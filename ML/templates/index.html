@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Upload Audio for Real time analysis of your voice agent</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #2f2f2f;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      color: #FF5722;
+      margin-bottom: 1.5rem;
+      font-size: 2.2rem;
+    }
+
+    .upload-container {
+      background-color: #ffffff15;
+      border: 2px dashed #d0d8dc;
+      border-radius: 10px;
+      padding: 2rem;
+      margin: 2rem 0;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .upload-container:hover {
+      border-color: #FF5722;
+      background-color: #ffffff10;
+    }
+
+    .upload-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      background-color: #FF5722;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .upload-button:hover {
+      background-color: #ff4500;
+    }
+
+    .drag-text {
+      color: #cccccc;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    button[type="submit"] {
+      padding: 1rem 2.5rem;
+      background-color: #FF5722;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #ff4500;
+    }
+
+    .file-preview {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #FF5722;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Upload Audio File for Real time analysis of your voice agent</h1>
+    
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <div class="upload-container" id="upload-container">
+        <label class="upload-button" for="audio-input">
+          + Select Audio
+        </label>
+        <input type="file" name="audio" id="audio-input" accept="audio/*" required>
+        <p class="drag-text">or drop audio file here</p>
+        <div class="file-preview" id="file-preview"></div>
+      </div>
+      <button type="submit">Analyze</button>
+    </form>
+  </div>
+  
+  <script>
+    const fileInput = document.getElementById('audio-input');
+    const filePreview = document.getElementById('file-preview');
+    const uploadContainer = document.getElementById('upload-container');
+
+    // Function to update preview with selected file name.
+    function updateFilePreview(file) {
+      filePreview.textContent = `Selected file: ${file.name}`;
+    }
+
+    // Listen for file selection.
+    fileInput.addEventListener('change', (e) => {
+      if(e.target.files && e.target.files[0]) {
+        updateFilePreview(e.target.files[0]);
+      }
+    });
+
+    // Drag and drop events.
+    uploadContainer.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadContainer.style.backgroundColor = '#ffffff10';
+    });
+
+    uploadContainer.addEventListener('dragleave', (e) => {
+      e.preventDefault();
+      uploadContainer.style.backgroundColor = '#ffffff15';
+    });
+
+    uploadContainer.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const dt = e.dataTransfer;
+      if(dt.files && dt.files[0]) {
+        fileInput.files = dt.files;
+        updateFilePreview(dt.files[0]);
+      }
+      uploadContainer.style.backgroundColor = '#ffffff15';
+    });
+  </script>
+</body>
+</html>

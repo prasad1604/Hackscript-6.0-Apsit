@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Analysis</title>
+    <style>
+        body {
+            background-color: #232323;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1a1a1a;
+            padding: 15px 30px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6a00;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            color: #ff6a00;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .container {
+            margin-top: 80px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .box {
+            background: #fff;
+            color: #000;
+            padding: 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .box:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">QA-BOT</div>
+        <div class="nav-links">
+            <a href="#">Sign In</a>
+            <a href="#">Sign Up</a>
+        </div>
+    </div>
+
+    <h1>Audio Analysis</h1>
+    <p>Choose your preferred analysis method</p>
+    
+    <div class="container">
+        <div class="box" onclick="location.href=`http://127.0.0.1:5000`">
+            <h2>Real-time Voice Analysis</h2>
+        </div>
+    </div>
+    <br><br>
+    <br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <div class="footer">
+      <p>© 2025 QA-BOT | All Rights Reserved</p>
+  </div>
+</body>
+</html>
